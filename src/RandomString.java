@@ -1,44 +1,37 @@
-// Java program generate a random AlphaNumeric String
-// using Math.random() method
+import java.util.Scanner;
 
 public class RandomString {
 
-    // function to generate a random string of length n
-    static String getAlphaNumericString(int n)
+    static String generateToken(int n)
     {
-
-// choose a Character random from this String
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "0123456789"
-                + "abcdefghijklmnopqrstuvxyz";
+                + "abcdefghijklmnopqrstuvxyz" +"!@#$%^&*()";
 
-// create StringBuffer size of AlphaNumericString
         StringBuilder sb = new StringBuilder(n);
 
         for (int i = 0; i < n; i++) {
-
-// generate a random number between
-// 0 to AlphaNumericString variable length
-            int index
-                    = (int)(AlphaNumericString.length()
-                    * Math.random());
-
-// add Character one by one in end of sb
-            sb.append(AlphaNumericString
-                    .charAt(index));
+            int index = (int)(AlphaNumericString.length() * Math.random());
+            sb.append(AlphaNumericString.charAt(index));
         }
-
         return sb.toString();
     }
 
-    public static void main(String[] args)
-    {
-
-// Get the size n
-        int n = 20;
-
-// Get and display the alphanumeric string
-        System.out.println(RandomString
-                .getAlphaNumericString(n));
+    public static void main(String[] args) {
+        int n = 0;
+        boolean done = false;
+        while (!done) {
+            try {
+                do {
+                    System.out.println("What token length do you need?\n" + "Select and enter 5,10 or 15");
+                    Scanner sc = new Scanner(System.in);
+                    n = sc.nextInt();
+                } while ((n != 5 && (n != 10)) && n != 15);
+                done = true;
+            } catch (Exception e) {
+                System.out.println("You must write a number");
+            }
+        }
+        System.out.println(RandomString.generateToken(n));
     }
 }
